@@ -2,9 +2,9 @@
 # Check if the .bashrc file exist
 if ! [ -f ~/.bashrc ]; then
 				touch ~/.bashrc
-				echo "# Alias definitions." >> ~./bashrc
+				echo "# Alias definitions." >> ~/.bashrc
 				echo "# You may want to put all your additions into a separate file like" >> ~./bashrc
-				echo "# ~/.bash_aliases, instead of adding them here directly." >> ~./bashrc
+				echo "# ~/.bash_aliases, instead of adding them here directly." >> ~/.bashrc
 				echo "if [ -f ~/.bash_aliases ]; then" >> ~/.bashrc
 				echo "	. ~/.bash_aliases" >> ~/.bashrc
 				echo "fi" >> ~/.bashrc
