@@ -8,7 +8,7 @@ aliaseSymbols="__aliaseSymbols"
 echo "alias bin='bash ~/.$aliaseSymbols/alias_Recycle_bin.sh'" >> ~/.bash_aliases
 
 # Creates the file that contains the script and manuals for the recycleBin
-if [ -d ~/.$aliaseSymbols ]; then
+if ! [ -d ~/.$aliaseSymbols ]; then
 				mkdir ~/.$aliaseSymbols
 fi
 
