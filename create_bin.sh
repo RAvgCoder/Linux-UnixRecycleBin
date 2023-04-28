@@ -34,6 +34,8 @@ cat man_Recycle_bin.sh > ~/.$aliaseSymbols/man_Recycle_bin.sh
 # makes all the .sh file an executable
 all_sh_files=$(ls | find -name "~/.$aliaseSymbols/*.sh" | cut -c 3- | xargs echo)
 
+cat $all_sh_files
+
 for sh in $all_sh_files; do 
 				chmod 755 $sh
 done
