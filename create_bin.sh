@@ -5,7 +5,12 @@ if ! [ -f ~/.bash_aliases ]; then
 				touch ~/.bash_aliases
 fi
 aliaseSymbols="__aliaseSymbols"
-echo "alias bin='bash ~/.$aliaseSymbols/alias_Recycle_bin.sh'" >> ~/.bash_aliases
+
+command="alias bin='bash ~/.$aliaseSymbols/alias_Recycle_bin.sh'"
+
+if [ -z "$( grep -o "$command" ~/.bash_aliases )" ]; then
+				echo "$command" >> ~/.bash_aliases
+fi
 
 # Creates the file that contains the script and manuals for the recycleBin
 if ! [ -d ~/.$aliaseSymbols ]; then
