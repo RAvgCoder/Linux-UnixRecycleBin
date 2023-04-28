@@ -2,18 +2,19 @@
 aliasName="bin" # User defined alias
 bin_name=__RECYCLE_BIN
 bin_path=~/$bin_name
+aliaseSymbols="__aliaseSymbols"
 
 if [ -z "$1" ]; then
 	echo "Use -h to get help"
 	exit 1
 
 elif [ $1 == '-h' ]; then 
-	~/.aliaseSymbols/man_Recycle_bin.sh $aliasName
+	~/.$aliaseSymbols/man_Recycle_bin.sh $aliasName
 	exit 0
 
 elif [ $1 == '--help' ]; then	
 	printf " %.0s" $(seq 1 15); echo ' <<'$aliasName'_help>> '; 
-	~/.aliaseSymbols/man_Recycle_bin.sh $aliasName
+	~/.$aliaseSymbols/man_Recycle_bin.sh $aliasName
 
 	printf " %.0s" $(seq 1 15); echo ' <<Move_help>> '; 
  	mv --help

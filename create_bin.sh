@@ -41,4 +41,4 @@ done
 # Runs the ~./bashrc file to update all canges imediatly 
 source ~/.bashrc
 
-
+echo " Script complete you can now delete the folder"
