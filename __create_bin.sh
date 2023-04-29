@@ -1,24 +1,31 @@
 #!/bin/bash
 # Check if the .bashrc file exist
 if ! [ -f ~/.bashrc ]; then
-        # Runs for users that dont already have a .profile file
-        if ! [ -f ~/.profile ]; then
-                touch ~/.profile
-                echo "# if running bash" >> ~/.profile
-                echo "if [ -n '\$BASH_VERSION' ]; then" >> ~/.profile
-                echo "  # include .bashrc if it exists" >> ~/.profile
-                echo "  if [ -f "~/.bashrc" ]; then" >> ~/.profile
-                echo "          . "~/.bashrc"" >> ~/.profile
-                echo "  fi" >> ~/.profile
-                echo "fi" >> ~/.profile
-        fi
-        touch ~/.bashrc
-        echo "# Alias definitions." >> ~/.bashrc
-        echo "# You may want to put all your additions into a separate file like" >> ~/.bashrc
-        echo "# ~/.bash_aliases, instead of adding them here directly." >> ~/.bashrc
-        echo "if [ -f ~/.bash_aliases ]; then" >> ~/.bashrc
-        echo "  . ~/.bash_aliases" >> ~/.bashrc
-        echo "fi" >> ~/.bashrc
+	# Runs for users that dont already have a .profile file
+ 	if ! [ -f ~/.profile ]; then
+  	touch ~/.profile
+   	echo "# if running bash" >> ~/.profile
+   	echo "if [ -n '\$BASH_VERSION' ]; then" >> ~/.profile
+   	echo "  # include .bashrc if it exists" >> ~/.profile
+   	echo "  if [ -f "~/.bashrc" ]; then" >> ~/.profile
+   	echo "          . "~/.bashrc"" >> ~/.profile
+   	echo "  fi" >> ~/.profile
+   	echo "fi" >> ~/.profile
+ 	fi
+
+	test_bashrc_presence=". "~/.bashrc""
+	if [ -z "$( grep -o "$test_bashrc_presence" ~/.profile	)" ]; then
+				echo"" >> ~/.profile
+        echo "$command" >> ~/.profile
+	fi
+
+ 	touch ~/.bashrc
+ 	echo "# Alias definitions." >> ~/.bashrc
+ 	echo "# You may want to put all your additions into a separate file like" >> ~/.bashrc
+ 	echo "# ~/.bash_aliases, instead of adding them here directly." >> ~/.bashrc
+ 	echo "if [ -f ~/.bash_aliases ]; then" >> ~/.bashrc
+ 	echo "  . ~/.bash_aliases" >> ~/.bashrc
+ 	echo "fi" >> ~/.bashrc
 fi
 
 # Check if the.bash_aliases file exist
