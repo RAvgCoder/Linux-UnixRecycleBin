@@ -30,8 +30,9 @@ git clone https://github.com/RAvgCoder/Linux-UnixRecycleBin.git
 ```bash
 source ~/.profile
 ````
+4. Run `bin -e` to create the recycle bin on your home directory named **__RECYCLE_BIN**
 
-4. Finally, enjoy the joy of never having to accidentally delete your files again.
+5. Finally, enjoy the joy of never having to accidentally delete your files again.
 
 ## Usage <a name = "usage"></a>
 
