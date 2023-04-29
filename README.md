@@ -45,11 +45,11 @@ bin folders file other_stuf
 
 Some extra flags have been added to make it easier to use, these are the list of supported ones. Because the bin alias is built around the `mv` command, its flags are supported too.
 
-|Flags      |Description           |
-|-----------|----------------------|
-|`-h`       |Brings up a help menu |
+|Flags      |Description                                               |
+|-----------|----------------------------------------------------------|
+|`-h`       |Brings up a help menu for only the `bin` command          |
 |`--help`   |Brings up a help menu for both the `bin` and `mv` command |
-|`-e`       |Clears the recycle bin|
+|`-e`       |Clears the recycle bin                                    |
 
 ##### Some flag usage examples 
 To clear the bin 
