@@ -2,7 +2,7 @@
 # Check if the .bashrc file exist
 if ! [ -f ~/.bashrc ]; then
 				# Runs for users that dont already have a .profile file
-				if ! [ -f ~/.profile]; then
+				if ! [ -f ~/.profile ]; then
 								touch ~/.profile
 								echo $?
 								echo "# if running bash" >> ~/.profile
