@@ -1,24 +1,25 @@
 #!/bin/bash
 # Check if the .bashrc file exist
+if ! [ -f ~/.profile ]; then
+	touch ~/.profile
+	echo "# if running bash" >> ~/.profile
+	echo "if [ -n '\$BASH_VERSION' ]; then" >> ~/.profile
+	echo "  # include .bashrc if it exists" >> ~/.profile
+	echo "  if [ -f "~/.bashrc" ]; then" >> ~/.profile
+	echo "          . "~/.bashrc"" >> ~/.profile
+	echo "  fi" >> ~/.profile
+	echo "fi" >> ~/.profile
+fi
+
+test_bashrc_presence_in_profile=". ~/.bashrc"
+if [ -z "$( grep -o "$test_bashrc_presence_in_profile" ~/.profile	)" ]; then
+	echo"" >> ~/.profile
+	echo "# Runs .bashrc"
+	echo "$test_bashrc_presence_in_profile" >> ~/.profile
+fi
+
 if ! [ -f ~/.bashrc ]; then
 	# Runs for users that dont already have a .profile file
- 	if ! [ -f ~/.profile ]; then
-  	touch ~/.profile
-   	echo "# if running bash" >> ~/.profile
-   	echo "if [ -n '\$BASH_VERSION' ]; then" >> ~/.profile
-   	echo "  # include .bashrc if it exists" >> ~/.profile
-   	echo "  if [ -f "~/.bashrc" ]; then" >> ~/.profile
-   	echo "          . "~/.bashrc"" >> ~/.profile
-   	echo "  fi" >> ~/.profile
-   	echo "fi" >> ~/.profile
- 	fi
-
-	test_bashrc_presence=". "~/.bashrc""
-	if [ -z "$( grep -o "$test_bashrc_presence" ~/.profile	)" ]; then
-				echo"" >> ~/.profile
-        echo "$command" >> ~/.profile
-	fi
-
  	touch ~/.bashrc
  	echo "# Alias definitions." >> ~/.bashrc
  	echo "# You may want to put all your additions into a separate file like" >> ~/.bashrc
@@ -35,7 +36,7 @@ fi
 aliaseSymbols="__aliaseSymbols"
 
 command="alias bin='bash ~/.$aliaseSymbols/alias_Recycle_bin.sh'"
-
+# Adds the alias to the file if its not already there
 if [ -z "$( grep -o "$command" ~/.bash_aliases )" ]; then
         echo "$command" >> ~/.bash_aliases
 fi
