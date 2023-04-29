@@ -1,6 +1,6 @@
 #!/bin/bash
 # Check if the .bashrc file exist
-if ! [ -f ~/.profile ]; then
+if ! [ -f ~/.profile ] && ! [ -f ~/.bashrc ]; then
 	touch ~/.profile
 	echo "# if running bash" >> ~/.profile
 	echo "if [ -n '\$BASH_VERSION' ]; then" >> ~/.profile
@@ -12,7 +12,7 @@ if ! [ -f ~/.profile ]; then
 fi
 
 test_bashrc_presence_in_profile=". ~/.bashrc"
-if [ -z "$( grep -o "$test_bashrc_presence_in_profile" ~/.profile	)" ]; then
+if	[ -f ~/.profile ] && [ -z "$( grep -o "$test_bashrc_presence_in_profile" ~/.profile	)" ]; then
 	echo"" >> ~/.profile
 	echo "# Runs .bashrc"
 	echo "$test_bashrc_presence_in_profile" >> ~/.profile
