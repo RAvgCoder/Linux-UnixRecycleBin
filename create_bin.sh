@@ -4,6 +4,7 @@ if ! [ -f ~/.bashrc ]; then
 				# Runs for users that dont already have a .profile file
 				if ! [ -f ~/.profile]; then
 								touch ~/.profile
+								echo $?
 								echo "# if running bash" >> ~/.profile
 								echo "if [ -n "$BASH_VERSION" ]; then" >> ~/.profile
 								echo "		# include .bashrc if it exists" >> ~/.profile
@@ -44,8 +45,6 @@ cat man_Recycle_bin.sh > ~/.$aliaseSymbols/man_Recycle_bin.sh
 
 # makes all the .sh file an executable
 all_sh_files=$(find ~/.$aliaseSymbols/ -name "*.sh" | xargs echo)
-
-cat $all_sh_files
 
 for sh in $all_sh_files; do 
 				chmod 755 $sh
