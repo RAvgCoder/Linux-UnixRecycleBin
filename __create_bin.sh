@@ -37,6 +37,8 @@ aliaseSymbols="__aliaseSymbols"
 command="alias bin='bash ~/.$aliaseSymbols/alias_Recycle_bin.sh'"
 # Adds the alias to the file if its not already there
 if [ -z "$( grep -o "$command" ~/.bash_aliases )" ]; then
+				echo "" >> ~/.bash_aliases
+				echo "# Recycle Bin alias command" >> ~/.bash_aliases
         echo "$command" >> ~/.bash_aliases
 fi
 
