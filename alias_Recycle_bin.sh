@@ -1,28 +1,57 @@
 #!/bin/bash
+
+# Global* variables
 aliasName="bin" # User defined alias
 bin_name=__RECYCLE_BIN
 bin_path=~/$bin_name
 aliaseSymbols="__aliaseSymbols"
 
-if [ -z "$1" ]; then
-	echo "Use -h to get help"
-	exit 1
+# Checks flags if they are valid for the alias 
+function __flag_checking()
+{
+	if [ -z "$1" ]; then
+		echo "Use -h to get help"
+		exit 1
 
-elif [ $1 == '-h' ]; then 
-	~/.$aliaseSymbols/man_Recycle_bin.sh $aliasName
-	exit 0
+	# Shows content of bin
+	elif [ $1 == '-s' ]; then
+		ls -la ~/__RECYCLE_BIN
+		exit 0
+	
+	# Empties the recycle bin
+	elif [ $1 == '-c' ]; then 
+		rm -r $bin_path
+		mkdir $bin_path
+		echo "Bin emptied"
+		exit 0
 
-elif [ $1 == '--help' ]; then	
-	printf " %.0s" $(seq 1 15); echo ' <<'$aliasName'_help>> '; 
-	~/.$aliaseSymbols/man_Recycle_bin.sh $aliasName
+	# Empties the recycle bin
+	elif [ $1 == '-cF' ]; then 
+		rm -rf $bin_path
+		mkdir $bin_path
+		echo "Bin emptied with force"
+		exit 0
 
-	printf " %.0s" $(seq 1 15); echo ' <<Move_help>> '; 
- 	mv --help
-	exit 0
+	# User asks for help for the alias	
+	elif [ $1 == '-h' ]; then 
+		~/.$aliaseSymbols/man_Recycle_bin.sh $aliasName
+		exit 0
 
-fi
+	# User asks for help for the alias along with mv alias	
+	elif [ $1 == '--help' ]; then	
+		# {" %.0s" $(seq 1 15);} prints a space 15 times
+		printf " %.0s" $(seq 1 15); echo ' <<'$aliasName'_help>> '; 
+		~/.$aliaseSymbols/man_Recycle_bin.sh $aliasName
+		printf " %.0s" $(seq 1 15); echo ' <<Move_help>> '; 
+ 		mv --help
+		exit 0
 
-function __filePreprocessing {
+	fi
+}
+
+# Prepares each file for deletion
+function __filePreprocessing() 
+{
 	fileName=$1
 	bin_path=$2
 	# Removes '/'eg:{one/} if present
@@ -39,22 +68,24 @@ function __filePreprocessing {
 	fi
 }
 
-
-# Checks if file doesnt exist
-if ! [ -d $bin_path ]; then
-	mkdir $bin_path
-fi
-
-# Checks if user wants to empty the recycle bin
-if [ $1 == -e ]; then 
-		rm -r $bin_path
+# Starts the script
+function main()	
+{
+	# Checks if file doesnt exist
+	if ! [ -d $bin_path ]; then
 		mkdir $bin_path
-
-else # Moves files specified into the recycle bin
-	for files in "$@" 
-	do
+	fi	
+	
+	__flag_checking "$@"
+	
+	# if no flags used  the user wants to delete files
+	if [ -z "$( __flag_checking "$@" )"	]; then
+		for files in "$@"; do
 			files=$(__filePreprocessing $files $bin_path)
 			mv $files $bin_path
-	done
-fi
+		done
+	fi
+}
 
+# Begining of the program
+main "$@"

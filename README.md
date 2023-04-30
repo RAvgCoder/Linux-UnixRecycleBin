@@ -48,22 +48,27 @@ bin folders file other_stuf
 
 Some extra flags have been added to make it easier to use, these are the list of supported ones. Because the bin alias is built around the `mv` command, its flags are supported too.
 
-|Flags      |Description                                               |
-|-----------|----------------------------------------------------------|
-|`-h`       |Brings up a help menu for only the `bin` command          |
-|`--help`   |Brings up a help menu for both the `bin` and `mv` command |
-|`-e`       |Clears the recycle bin                                    |
+|Flags      |Description                                                	|
+|-----------|-------------------------------------------------------------|
+|`-h`       |Brings up a help menu for only the `bin` command           	|
+|`--help`   |Brings up a help menu for both the `bin` and `mv` command  	|
+|`-c`       |Clears the recycle bin                                     	|
+|`-cF`      |Clears the recycle bin for files that require a force removal equivalent to `rm -rf`|        
+|`-s`       |Shows the content of the recycle bin                       	|
 
 ##### Some flag usage examples 
 To clear the bin 
 ```bash
-bin -e
+bin -c
 ```
 To get help for only `bin`
 ```bash
 bin -h
 ```
-To get help for both `bin` and  `mv`
+To show the contents of the recycle bin
+```bash
+bin -c
+```
 
 ## Important Notes
 1. This program creates files on your computer in order to function properly, which may configuration files, and other data necessary for the program's operation. Please be aware of this before installing the program. 
